@@ -1,4 +1,4 @@
-# Software Development Project (SS2018) Group 2
+# Software Development Project (SS2018)
 
 ## Project 3: 3D object detection and tracking
 
