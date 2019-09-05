@@ -16,4 +16,4 @@ The Rotating Turntable Test (RTT) in the RoboCup@Work competition requires the d
 * refactored code to account for the dynamic scene. In particular, the plane needs to be extracted just once, while multiple segmentation and clustering operations can be performed using the once extracted plane.
 * track objects using a naive nearest-neighbour approach
 * fit a circle to the tracked objects and estimate their speed and position on the table
-* output an estimated time when an object will be in front of the robot for grasping
+
