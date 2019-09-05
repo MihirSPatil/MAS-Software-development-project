@@ -6,8 +6,6 @@ The Rotating Turntable Test (RTT) in the RoboCup@Work competition requires the d
 
 ## Problem Statement
 
-The following are not problems, but are instead missing requirements in the existing scene segmentation component that would make it suitable for the RTT:
-
 * in it’s current set up, it is not programmed for dynamic scenes (i.e. it performs a one-shot segmentation on a static scene)
 * has no tracking component
 * has nothing that exploits the ”circular” nature of the motion of the objects
