@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="mir_plan_loader" type="plan_loader.py" name="plan_loader" output="screen" />
+    <node pkg="mir_planner_executor" type="planner_executor" name="planner_executor" output="screen">
+        <param name="use_mockups" value="false"/>
+    </node>
+    <node pkg="mir_planner_executor" type="planner_executor_test.py" name="planner_executor_test" output="screen" />
+</launch>

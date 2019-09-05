@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>mir_align_with_workspace</name>
+  <version>1.0.0</version>
+  <description>
+    Aligns the robot with certain workspace based on defined threshold.
+    Each workpsace have different threshold.
+    It calls base_placement_node which calculates velocities based on line slope and interception.
+  </description>
+
+  <license>GPLv3</license>
+
+  <author email="vukcevicdjordjemne@gmail.com">Djordje Vukcevic</author>
+  <author email="abepadalkar@gmail.com">Abhishek Padalkar</author>
+  <author email="rubanraj54@gmail.com">Rubanraj Ravichandran</author>
+  <author email="bhargavi.mahesh@gmail.com">Bhargavi Mahesh</author>
+
+  <maintainer email="vukcevicdjordjemne@gmail.com">Djordje Vukcevic</maintainer>
+  <maintainer email="abepadalkar@gmail.com">Abhishek Padalkar</maintainer>
+  <maintainer email="rubanraj54@gmail.com">Rubanraj Ravichandran</maintainer>
+  <maintainer email="bhargavi.mahesh@gmail.com">Bhargavi Mahesh</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>roscpp</build_depend>
+
+  <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>roscpp</run_depend>
+
+</package>

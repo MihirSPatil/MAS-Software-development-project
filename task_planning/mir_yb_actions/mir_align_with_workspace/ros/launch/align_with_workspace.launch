@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find mir_base_placement)/ros/launch/base_placement.launch">  </include>
+</launch>

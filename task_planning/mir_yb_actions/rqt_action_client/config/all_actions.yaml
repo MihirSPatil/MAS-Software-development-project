@@ -1,0 +1,27 @@
+PlaceObject:
+    action_server: place_object_server
+    package: mir_yb_action_msgs
+MoveBaseSafe:
+    action_server: move_base_safe_server
+    package: mir_yb_action_msgs
+PerceiveLocation:
+    action_server: perceive_location_server
+    package: mir_yb_action_msgs
+PickObject:
+    action_server: pick_object_server
+    package: mir_yb_action_msgs
+PickObjectWBC:
+    action_server: wbc_pick_object_server
+    package: mir_yb_action_msgs
+StageObject:
+    action_server: stage_object_server
+    package: mir_yb_action_msgs
+UnStageObject:
+    action_server: unstage_object_server
+    package: mir_yb_action_msgs
+ComputeBaseShift:
+    action_server: compute_base_shift_server
+    package: mir_yb_action_msgs
+AlignWithObject:
+    action_server: align_with_object_server
+    package: mir_yb_action_msgs

@@ -1,0 +1,9 @@
+- git:
+    local-name: ROSPlan
+    uri: https://github.com/b-it-bots/ROSPlan.git
+    version: indigo-devel
+
+- git:
+    local-name: mercury_planner
+    uri: https://github.com/b-it-bots/mercury_planner.git
+    version: master

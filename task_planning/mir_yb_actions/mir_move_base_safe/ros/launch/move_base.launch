@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- move base action lib server name -->
+    <arg name="move_base_action_name" default="move_base"/>
+    
+    <!-- Node cycle rate (in hz) -->
+    <arg name="loop_rate" default="10"/> 
+    
+    <node pkg="mcr_move_base" type="move_base_node" name="move_base_wrapper" output="screen">
+        <param name="move_base_action_name" type="string" value="$(arg move_base_action_name)"/>
+        <param name="loop_rate" type="double" value="10"/>
+    </node>
+    
+    <!-- requirements to barrier tape binary detection -->
+    
+    <!--include file="$(find mir_look_at)/ros/launch/look_at_point.launch">
+    </include-->
+
+    <!--include file="$(find mir_moveit_client)/ros/launch/moveit_client.launch">
+    </include-->
+
+    
+    <!--include file="$(find mcr_common_converters)/ros/launch/twist_to_motion_direction_conversion.launch">
+        <arg name="input_topic" value="/cmd_vel" />
+    </include-->
+
+
+</launch>

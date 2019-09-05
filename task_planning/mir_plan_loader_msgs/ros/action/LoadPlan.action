@@ -1,0 +1,8 @@
+# Define the goal
+string file
+---
+# Define the result
+bool success
+rosplan_dispatch_msgs/CompletePlan plan
+---
+# Define a feedback message

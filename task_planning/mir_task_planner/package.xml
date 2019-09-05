@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>mir_task_planner</name>
+  <version>0.0.0</version>
+  <description>The mir_task_planner package</description>
+
+  <maintainer email="deebul.nair@h-brs.de">deebuls</maintainer>
+
+  <license>LGPLv3</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

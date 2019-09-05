@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="object_perception_target_frame" default="/base_link_static"/>
+  <arg name="base_cmd_topic" default="/cmd_vel_safe"/>
+  <arg name="mokeup_pose" default="false"/>
+
+  <!-- pick object state machine, wrapped around action lib -->
+  <group if="$(arg mokeup_pose)">
+    <node pkg="mir_pick_object" type="pick_object_server_whole_body_control.py" name="wbc_pick_object_server" output="screen" args="mokeup"/>
+  </group>
+  <group unless="$(arg mokeup_pose)">
+    <!-- object selector -->
+    <include file="$(find mcr_perception_selectors)/ros/launch/object_selector.launch" />
+    
+    <node pkg="mir_pick_object" type="pick_object_server_whole_body_control.py" name="wbc_pick_object_server" output="screen"/>
+  </group>
+
+  <!-- whole body motion control to grasp objects -->
+  <include file="$(find mir_pick_object)/ros/launch/demo_youbot_whole_body_control.launch" >
+    <arg name="static_transform_frame" value="$(arg object_perception_target_frame)" />
+    <arg name="use_mokeup_pose" value="$(arg mokeup_pose)" />
+    <arg name="pose_in" value="/mcr_perception/object_selector/output/object_pose" />
+    <arg name="cmd_vel_out" value="$(arg base_cmd_topic)" />
+  </include>
+
+</launch>

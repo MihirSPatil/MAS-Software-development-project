@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="use_mokeup_pose" default="false" />
+    <arg name="perceive_with_cloud_accumulation" default="false" />
+    <arg name="perceive_with_base_motions" default="false" />
+    <arg name="align_with_workspace" default="false" />
+
+    <!-- move base safe action server -->
+    <node pkg="mir_move_base_safe" type="move_base_safe_server.py" name="move_base_safe_server" output="screen" >
+        <param name="align" type="bool" value="$(arg align_with_workspace)" />
+    </node>
+
+    <!-- move base safe action server -->
+    <node pkg="mir_align_with_workspace" type="align_with_workspace_server.py" name="align_with_workspace_server" output="screen" />
+
+    <!-- stage action server -->
+    <node pkg="mir_stage_object" type="stage_object_server.py" name="stage_object_server" output="screen" />
+
+    <!-- unstage action server -->
+    <node pkg="mir_unstage_object" type="unstage_object_server.py" name="unstage_object_server" output="screen" />
+
+    <!-- perceive location action server -->
+    <!-- if using cloud accumulation, select either with base motions or with arm motions -->
+    <group if="$(arg perceive_with_cloud_accumulation)">
+        <group if="$(arg perceive_with_base_motions)">
+            <node pkg="mir_perceive_location" type="perceive_location_server_with_shift_base.py" name="perceive_location_server" output="screen" />
+        </group>
+        <group unless="$(arg perceive_with_base_motions)">
+            <node pkg="mir_perceive_location" type="perceive_location_server_arm_poses.py" name="perceive_location_server" output="screen">
+                <!-- time to sleep after moving the arm. Without this, recognition rate is HORRIBLE, since the frame rate
+                     of the camera is slow with the Motion Range Threshold set to 100-->
+                <param name="sleep_time" type="double" value="1.0" />
+            </node>
+        </group>
+    </group>
+    <!-- if no cloud accumulation is used, arm motions are used, and recognize objects is run for each view -->
+    <group unless="$(arg perceive_with_cloud_accumulation)">
+       <node pkg="mir_perceive_location" type="perceive_location_server.py" name="perceive_location_server" output="screen" />
+    </group>
+
+    <!-- wbc pick object action server -->
+    <group if="$(arg use_mokeup_pose)">
+        <node pkg="mir_pick_object" type="pick_object_server_whole_body_control.py" name="wbc_pick_object_server"
+            output="screen" args="mokeup"/>
+    </group>
+    <group unless="$(arg use_mokeup_pose)">
+        <node pkg="mir_pick_object" type="pick_object_server_whole_body_control.py" name="wbc_pick_object_server"
+            output="screen"/>
+    </group>
+    
+    <!-- place object action server -->
+    <node pkg="mir_place_object" type="place_object_server.py" name="place_object_server" output="screen" />
+    
+    <!-- insert object in cavity server -->
+    <node pkg="mir_insert_object" type="insert_object_in_cavity_server.py" name="insert_object_in_cavity_server" output="screen" />
+
+    <!-- place object in cavity server -->
+    <node pkg="mir_perceive_cavity" type="perceive_cavity_server.py" name="perceive_cavity_server" output="screen">
+        <!-- time to sleep after moving the arm. Without this, the pose of the cavity is usually offset -->
+        <param name="sleep_time" type="double" value="1.0" />
+    </node>
+
+    <!-- insert object in object server -->
+    <node pkg="mir_insert_object" type="insert_object_server.py" name="insert_object_server" output="screen" />
+
+</launch>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- top hole pose shifter launch file -->
+    <!-- input: pose of the hole, output a pose with an offset on z up (top_hole) -->
+    
+  <!-- :::::::::: Arguments ::::::::: -->
+    
+    <!-- pose shifter will subscribe to this topic and will offset the pose to the linear_offset arg value -->
+    <arg name="pose_shifter_pose_in" default="/mcr_perception/object_selector/output/object_pose" />
+    
+    <!-- pose shifter will output a pose in this topic -->
+    <arg name="pose_shifter_pose_out" default="/mcr_common_converters/top_hole_pose_shifter/output_pose" />
+    
+    <!-- offset of 10 cm up in z axis -->
+    <arg name="linear_offset" default="[0.0, 0.0, 0.1]"/>
+    
+  <!-- :::::::::: end of Arguments ::::::::: -->
+    
+    <!-- Goal pose -->
+    <node pkg="mcr_common_converters" type="pose_shifter_node"
+          name="top_hole_pose_shifter" output="screen">
+
+      <!-- Linear offset in X, Y and Z (in meters) -->
+      <rosparam param="linear_offset" subst_value="True">$(arg linear_offset)</rosparam>
+
+       <!-- this pose will come from object selector for insertion -->
+       <remap from="~pose_in" to="$(arg pose_shifter_pose_in)"/>
+       
+       <!-- this pose out will be connected to pregrasp planner (mir_pregrasp_planner) -->
+       <remap from="~pose_out" to="$(arg pose_shifter_pose_out)"/>
+       
+    </node>
+    
+</launch>

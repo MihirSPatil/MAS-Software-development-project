@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+ 
+  <!-- Launch all required components for planning approach -->
+  
+    <!-- insert wheel in axis server -->
+    <node pkg="mir_insert_object" type="insert_wheel_in_axis_server.py" name="insert_wheel_in_axis_server" output="screen" />
+
+    <!-- pose shifting and linear motions -->
+
+    <arg name="linear_offset_x" default="-0.06"/>
+    <arg name="linear_offset_y" default="0.0"/>
+    <arg name="linear_offset_z" default="-0.02"/>
+
+    <node pkg="mcr_common_converters" type="pose_shifter_node"
+          name="wheel_axis_pose_shifter" output="screen">
+
+      <!-- Linear offset in X, Y and Z (in meters) -->
+      <param name="linear_offset_x" type="double" value="$(arg linear_offset_x)"/>
+      <param name="linear_offset_y" type="double" value="$(arg linear_offset_y)"/>
+      <param name="linear_offset_z" type="double" value="$(arg linear_offset_z)"/>
+
+
+       <!-- this pose will come from car wheel axis detection for insertion -->
+       <remap from="~pose_in" to="/mcr_perception/car_wheel_axis_detection/output/pose"/>
+       
+       <!-- this pose out will be connected to pregrasp planner (mir_pregrasp_planner) -->
+       <remap from="~pose_out" to="/mcr_perception/object_selector/output/object_pose"/>
+       
+    </node>
+
+    <include file="$(find mir_insert_object)/ros/launch/linear_motions_with_cart_ctrl.launch"/>
+    <include file="$(find mir_insert_object)/ros/launch/poses_to_move.launch"/>
+    
+</launch>
+

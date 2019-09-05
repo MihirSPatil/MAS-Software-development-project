@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="mir_plan_loader" type="plan_loader.py" name="plan_loader" output="screen" ns="task_planning" />
+</launch>

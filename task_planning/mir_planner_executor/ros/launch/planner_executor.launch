@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- mockup planner executor, useful for debugging planning pipeline -->
+    <arg name="use_mockups" default="false" />
+
+    <!-- run planner executor -->
+    <node pkg="mir_planner_executor" type="planner_executor" name="planner_executor" output="screen"  ns="task_planning">
+        <param name="use_mockups" value="$(arg use_mockups)"/>
+    </node>
+
+</launch>

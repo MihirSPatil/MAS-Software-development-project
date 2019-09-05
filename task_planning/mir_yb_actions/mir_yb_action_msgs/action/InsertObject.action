@@ -1,0 +1,11 @@
+# goal definition
+string peg
+string hole
+string robot_platform
+---
+# result definition
+bool success
+---
+# feedback
+string current_state
+string text

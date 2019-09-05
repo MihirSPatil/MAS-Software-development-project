@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="pose_out" default="/move_base_wrapper/pose_in" />
+
+    <node pkg="mcr_manipulation_measurers" type="pose_transformer_node"
+      name="pose_transformer" output="screen" ns="/mcr_perception/percieve_location_server/">
+
+        <!-- the cycle rate of the node (in Hz) -->
+        <param name="loop_rate" type="double" value="10"/>
+
+        <param name="wait_for_transform" type="double" value="0.1"/>
+
+        <!-- Reference frame to transform target pose -->
+        <param name="target_frame" type="str" value="odom"/>
+
+        <!-- Flag to use node in trigger mode -->
+        <param name="trigger" type="boolean" value="false"/>
+
+        <!-- Pose in (geometry_msgs/PoseStamped) -->
+        <remap from="~transformed_pose" to="$(arg pose_out)" />
+    </node>
+</launch>

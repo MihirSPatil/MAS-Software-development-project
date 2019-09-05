@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>mir_plan_loader</name>
+    <version>0.0.0</version>
+    <description>The mir_plan_loader package</description>
+    <maintainer email="torsten.jandt@smail.inf.h-brs.de">Torsten Jandt</maintainer>
+    <author email="torsten.jandt@smail.inf.h-brs.de">Torsten Jandt</author>
+    <license>MIT</license>
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>actionlib</build_depend>
+    <build_depend>actionlib_msgs</build_depend>
+    <build_depend>rosplan_dispatch_msgs</build_depend>
+    <build_depend>mir_plan_loader_msgs</build_depend>
+    <run_depend>actionlib</run_depend>
+    <run_depend>actionlib_msgs</run_depend>
+    <run_depend>rosplan_dispatch_msgs</run_depend>
+    <run_depend>mir_plan_loader_msgs</run_depend>
+</package>
